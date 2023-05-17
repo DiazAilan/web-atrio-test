@@ -5,14 +5,9 @@ import { AppComponent } from './app.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProgressBarComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent, ProgressBarComponent],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
