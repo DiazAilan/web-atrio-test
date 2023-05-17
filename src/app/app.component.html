@@ -1,7 +1,23 @@
-<div class="content">
-  <app-progress-bar
-    *ngFor="let progress of progressData"
-    [title]="progress.title"
-    [percentage]="progress.percentage"
-  ></app-progress-bar>
+<div class="page">
+  <h4 class="title">
+    Test technique WEB-ATRIO réalisé par {{ candidate.name }}
+    {{ candidate.lastName }}<br />
+    réalisé le {{ testDate | date : "dd/MM/YYYY" }}
+  </h4>
+
+  <div class="content">
+    <app-progress-bar
+      *ngFor="let progress of progressData"
+      [title]="progress.title"
+      [percentage]="progress.percentage"
+    ></app-progress-bar>
+
+    <div class="controls">
+      <div class="stylish-button" (click)="resetControls()">
+        Remettre à zéro les compteurs
+      </div>
+      <div class="stylish-button" (click)="addToControls(5)">Ajouter 5%</div>
+      <div class="stylish-button" (click)="addToControls(10)">Ajouter 10%</div>
+    </div>
+  </div>
 </div>
