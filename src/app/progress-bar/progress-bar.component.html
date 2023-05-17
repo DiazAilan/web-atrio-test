@@ -1,1 +1,13 @@
-<p>progress-bar works!</p>
+<div class="container">
+  <div class="title">{{ title }}</div>
+  <div class="progress-bar">
+    <div class="percentage">{{ percentage | percent }}</div>
+    <div class="graph">
+      <div
+        class="fill-area"
+        [ngClass]="graphClass"
+        [style.width]="percentage * 100 + '%'"
+      ></div>
+    </div>
+  </div>
+</div>
