@@ -77,7 +77,7 @@ export class AppComponent implements OnInit {
   }
 
   onProgressBarChange(progress: number, index: number): void {
-    this.progressData[index].percentage = progress;
+    this.progressData[index].percentage = progress > 1 ? 1 : progress;
   }
 
   deleteProgressBar(index: number): void {
