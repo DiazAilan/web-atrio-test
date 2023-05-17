@@ -6,7 +6,8 @@ $high-color: #60e8b6;
 $full-color: #30db63;
 
 .container {
-  padding: 8px;
+  padding: 0 8px;
+  margin-bottom: 32px;
 }
 
 .title {
@@ -26,14 +27,14 @@ $full-color: #30db63;
 
 .graph {
   height: 12px;
-  width: 600px;
+  width: 800px;
   max-width: 100%;
   background: #373737;
   box-shadow: variables.$cool-shadow;
 
   .fill-area {
     height: 100%;
-    transition: width 0.3s;
+    transition: all 0.3s;
     &.low {
       background-color: $low-color;
     }

@@ -21,4 +21,9 @@ body {
   display: inline-block;
   margin: 0 12px;
   user-select: none;
+  transition: all 0.3s;
+  &:active {
+    box-shadow: none;
+    background-color: #303030;
+  }
 }
