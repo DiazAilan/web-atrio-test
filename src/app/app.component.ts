@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import mockupProgressData from './mockup/progress-data.mockup';
 
 interface ProgressBarData {
@@ -26,6 +26,7 @@ const CANDIDATE = {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   title = 'web-atrio-test';
@@ -33,6 +34,10 @@ export class AppComponent implements OnInit {
   progressData!: ProgressBarData[];
   testDate: number = MY_TIMESTAMP;
   candidate: Candidate = new Candidate(CANDIDATE.name, CANDIDATE.lastName);
+  newBarConfig = {
+    title: 'Nouvelle progress-bar',
+    percentage: 5,
+  };
 
   ngOnInit(): void {
     this.progressData = mockupProgressData;
@@ -54,5 +59,28 @@ export class AppComponent implements OnInit {
         progress.percentage += decimalAmmount;
       }
     });
+  }
+
+  addNewBar(): void {
+    const decimalAmmount = this.newBarConfig.percentage / 100;
+    if (decimalAmmount > 1) {
+      alert('Maximum progress exceeded (100)');
+    } else if (decimalAmmount < 0) {
+      alert('Invalid minimum progress (No negative numbers allowed)');
+    } else {
+      const configToData = {
+        ...this.newBarConfig,
+        percentage: decimalAmmount,
+      };
+      this.progressData.push(configToData);
+    }
+  }
+
+  onProgressBarChange(progress: number, index: number): void {
+    this.progressData[index].percentage = progress;
+  }
+
+  deleteProgressBar(index: number): void {
+    this.progressData.splice(index, 1);
   }
 }

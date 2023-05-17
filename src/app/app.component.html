@@ -8,9 +8,11 @@
   <div class="content">
     <div class="progress-bars">
       <app-progress-bar
-        *ngFor="let progress of progressData"
+        *ngFor="let progress of progressData; let i = index"
         [title]="progress.title"
         [percentage]="progress.percentage"
+        (percentageChanged)="onProgressBarChange($event, i)"
+        (barDeleted)="deleteProgressBar(i)"
       ></app-progress-bar>
     </div>
     <div class="controls">
@@ -19,6 +21,24 @@
       </div>
       <div class="stylish-button" (click)="addToControls(5)">Ajouter 5%</div>
       <div class="stylish-button" (click)="addToControls(10)">Ajouter 10%</div>
+    </div>
+    <div class="controls">
+      <div class="stylish-button" (click)="addNewBar()">
+        Ajouter nouvelle progress-bar
+      </div>
+      <div class="input-field">
+        <label>Nom</label>
+        <input type="text" [(ngModel)]="newBarConfig.title" />
+      </div>
+      <div class="input-field">
+        <label>Progress %</label>
+        <input
+          type="number"
+          min="0"
+          max="100"
+          [(ngModel)]="newBarConfig.percentage"
+        />
+      </div>
     </div>
   </div>
 </div>

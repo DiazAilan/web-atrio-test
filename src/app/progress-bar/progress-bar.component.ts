@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 
@@ -15,6 +17,8 @@ import {
 export class ProgressBarComponent implements OnChanges {
   @Input() title!: string;
   @Input() percentage!: number;
+  @Output() percentageChanged = new EventEmitter<number>();
+  @Output() barDeleted = new EventEmitter<void>();
 
   graphClass!: 'low' | 'mid' | 'high' | 'full';
 
@@ -22,6 +26,19 @@ export class ProgressBarComponent implements OnChanges {
     if (changes['percentage'].currentValue) {
       this.renderPercentage();
     }
+  }
+
+  reset(): void {
+    this.percentageChanged.emit(0);
+  }
+
+  add(ammount: number): void {
+    const decimalAmmount = ammount / 100;
+    this.percentageChanged.emit(this.percentage + decimalAmmount);
+  }
+
+  remove(): void {
+    this.barDeleted.emit();
   }
 
   private renderPercentage(): void {
