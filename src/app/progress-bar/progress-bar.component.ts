@@ -12,6 +12,7 @@ import {
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.scss'],
+  // Let's avoid unwanted change detections for the sake of performance
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressBarComponent implements OnChanges {
@@ -42,12 +43,20 @@ export class ProgressBarComponent implements OnChanges {
   }
 
   private renderPercentage(): void {
+    /*
+      Why this approach instead of a simple expression in the template?
+      Well, I'd rather recalculate the value when needed than in every single
+      onChanges trigger.
+      Yeah, right now this won't be an issue but I think I'd rather stick to only
+      do it when needed if the requirement evolves.
+    */
     const thresholds = {
       mid: 0.25,
       high: 0.5,
       full: 0.75,
     };
 
+    // Not my best algorithm, but it was the best I could figure out in a pinch
     if (this.percentage > thresholds.full) {
       this.graphClass = 'full';
     } else if (this.percentage > thresholds.high) {

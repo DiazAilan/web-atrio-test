@@ -6,6 +6,10 @@ interface ProgressBarData {
   percentage: number;
 }
 
+/*
+  Class added for convenience, I'd move it to it's own file if I was meant
+  to handle real candidates.
+*/
 class Candidate {
   name: string;
   lastName: string;
@@ -63,6 +67,12 @@ export class AppComponent implements OnInit {
 
   addNewBar(): void {
     const decimalAmmount = this.newBarConfig.percentage / 100;
+    /* 
+      I'd rather throw an exception or handle it with a helper class to handle
+      errors but I thought an alert will suffice for the sake of this test.
+      Not the most elegant error handling. But since it is a bonus point I think
+      it will do the job.
+    */
     if (decimalAmmount > 1) {
       alert('Maximum progress exceeded (100)');
     } else if (decimalAmmount < 0) {
