@@ -16,30 +16,37 @@
       ></app-progress-bar>
     </div>
     <div class="controls">
-      <div class="stylish-button" (click)="resetControls()">
+      <button class="stylish-button" (keyup)="resetControls()">
         Remettre à zéro les compteurs
-      </div>
-      <div class="stylish-button" (click)="addToControls(5)">Ajouter 5%</div>
-      <div class="stylish-button" (click)="addToControls(10)">Ajouter 10%</div>
+      </button>
+      <button class="stylish-button" (keyup)="addToControls(5)">
+        Ajouter 5%
+      </button>
+      <button class="stylish-button" (keyup)="addToControls(10)">
+        Ajouter 10%
+      </button>
     </div>
     <div class="controls">
-      <div class="stylish-button" (click)="addNewBar()">
+      <button class="stylish-button" (keyup)="addNewBar()">
         Ajouter nouvelle progress-bar
+      </button>
+      <div class="input-field">
+        <label>
+          Nom
+          <!-- For the sake of God let's not abuse of dual binding in ngModel.
+            Used only to finish the task in the meant time -->
+          <input type="text" [(ngModel)]="newBarConfig.title" />
+        </label>
       </div>
       <div class="input-field">
-        <label>Nom</label>
-        <!-- For the sake of God let's not abuse of dual binding in ngModel.
-          Used only to finish the task in the meant time -->
-        <input type="text" [(ngModel)]="newBarConfig.title" />
-      </div>
-      <div class="input-field">
-        <label>Progress %</label>
-        <input
-          type="number"
-          min="0"
-          max="100"
-          [(ngModel)]="newBarConfig.percentage"
-        />
+        <label>
+          Progress %
+          <input
+            type="number"
+            min="0"
+            max="100"
+            [(ngModel)]="newBarConfig.percentage"
+        /></label>
       </div>
     </div>
   </div>

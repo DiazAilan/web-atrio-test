@@ -22,6 +22,7 @@ body {
   margin: 0 12px;
   user-select: none;
   transition: all 0.3s;
+  border: none;
   &:active {
     box-shadow: none;
     background-color: #303030;
@@ -29,10 +30,13 @@ body {
 }
 
 .input-field {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: baseline;
   margin: 0 12px;
+  label {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+  }
   input {
     min-width: 120px;
   }
